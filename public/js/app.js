@@ -4022,6 +4022,31 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+var btn = document.querySelector('.imageBtn');
+var inputFile = document.querySelector('#inputFile');
+var img = document.querySelector('#img');
+
+if (btn && inputFile && img) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    inputFile.click();
+  });
+  inputFile.addEventListener('change', function () {
+    var file = this.files[0];
+
+    if (file) {
+      var reader = new FileReader();
+
+      reader.onload = function () {
+        var result = reader.result;
+        img.src = result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
