@@ -17,7 +17,7 @@
     @if (session()->has('success'))
       <div class="flex items-center justify-between max-w-7xl mx-auto mb-2 sm:px-6 lg:px-8 p-3 text-white rounded-md bg-green-500">{{ session()->get('success') }}</div>
     @endif
-    
+         
     </div>
       @foreach ($clients as $client)
         <div class="flex items-center shadow-xl justify-between max-w-7xl mx-auto mb-2 sm:px-6 lg:px-8 p-3 rounded-md bg-white">
