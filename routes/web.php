@@ -15,7 +15,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 // Client route
-Route::resource('client',ClientController::class);
+Route::resource('client',ClientController::class)->middleware(['auth']);
 
 // contact
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
