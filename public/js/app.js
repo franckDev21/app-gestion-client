@@ -4022,30 +4022,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
-var btn = document.querySelector('.imageBtn');
-var inputFile = document.querySelector('#inputFile');
-var img = document.querySelector('#img');
+__webpack_require__(/*! ./dialogue */ "./resources/js/dialogue.js");
 
-if (btn && inputFile && img) {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    inputFile.click();
-  });
-  inputFile.addEventListener('change', function () {
-    var file = this.files[0];
-
-    if (file) {
-      var reader = new FileReader();
-
-      reader.onload = function () {
-        var result = reader.result;
-        img.src = result;
-      };
-
-      reader.readAsDataURL(file);
-    }
-  });
-}
+__webpack_require__(/*! ./upload-img */ "./resources/js/upload-img.js");
 
 /***/ }),
 
@@ -4077,6 +4056,119 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/dialogue.js":
+/*!**********************************!*\
+  !*** ./resources/js/dialogue.js ***!
+  \**********************************/
+/***/ (() => {
+
+var modal = document.getElementById('modal-delete');
+var close = document.getElementById('modal-close-btn');
+var croix = document.getElementById('modal-close-croix');
+var tab = document.getElementById('tab');
+var token = document.querySelector('meta[name="csrf-token"]').content;
+var ok = document.getElementById('send-delete');
+var id = null;
+
+if (modal && close && croix && tab && token && ok) {
+  tab.addEventListener('click', function (e) {
+    e.stopPropagation();
+
+    if (e.target.classList.contains('switch__btn')) {
+      e.preventDefault();
+
+      if (e.target.classList.contains('activate')) {
+        modal.querySelector('.title').innerText = 'Activer';
+        modal.querySelector('.message').innerText = 'Voulez vous activer ce client ?';
+        ok.classList.replace('bg-red-500', 'bg-green-400');
+        ok.classList.replace('hover:bg-red-700', 'hover:bg-green-700');
+        ok.innerText = "Activer";
+      } else {
+        modal.querySelector('.title').innerText = 'Confirmer';
+        modal.querySelector('.message').innerText = 'Voulez vous vraiment supprimer ce client ?';
+        ok.classList.replace('bg-green-400', 'bg-red-500');
+        ok.classList.replace('hover:bg-green-700', 'hover:bg-red-700');
+        ok.innerText = "Supprimer";
+      }
+
+      modal.classList.remove('pointer-events-none');
+      modal.classList.remove('opacity-0');
+      modal.classList.add('pointer-events-auto');
+      modal.classList.add('opacity-1');
+      id = +e.target.dataset.id;
+    }
+  });
+  close.addEventListener('click', function (e) {
+    modal.classList.add('pointer-events-none');
+    modal.classList.add('opacity-0');
+    modal.classList.remove('pointer-events-auto');
+    modal.classList.remove('opacity-1');
+  });
+  croix.addEventListener('click', function (e) {
+    modal.classList.add('pointer-events-none');
+    modal.classList.add('opacity-0');
+    modal.classList.remove('pointer-events-auto');
+    modal.classList.remove('opacity-1');
+  });
+  ok.addEventListener('click', function (e) {
+    fetch("client/".concat(id), {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': token
+      },
+      method: 'delete',
+      body: JSON.stringify({
+        id: id
+      })
+    }).then(function (response) {
+      response.json().then(function (response) {
+        console.log(response);
+
+        if (response.data == 'success') {
+          window.location = '/client';
+        }
+      });
+    })["catch"](function (error) {
+      return console.log(error);
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/upload-img.js":
+/*!************************************!*\
+  !*** ./resources/js/upload-img.js ***!
+  \************************************/
+/***/ (() => {
+
+var btn = document.querySelector('.imageBtn');
+var inputFile = document.querySelector('#inputFile');
+var img = document.querySelector('#img');
+
+if (btn && inputFile && img) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    inputFile.click();
+  });
+  inputFile.addEventListener('change', function () {
+    var file = this.files[0];
+
+    if (file) {
+      var reader = new FileReader();
+
+      reader.onload = function () {
+        var result = reader.result;
+        img.src = result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  });
+}
 
 /***/ }),
 

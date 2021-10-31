@@ -21,9 +21,10 @@ class ClientFactory extends Factory
      */
     public function definition()
     {
+        $postes = ['Développeur Web','Développeur Mobile','Architecte','Musicien','Designer','Photographe','PDG iSOFT'];
         return [
             'name' => $this->faker->name,
-            'adresse' => $this->faker->address,
+            'poste' => $postes[rand(0,6)],
             'tel' => $this->faker->phoneNumber,
             'email'=> $this->faker->unique()->safeEmail()
         ];
