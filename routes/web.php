@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ require __DIR__.'/auth.php';
 
 // Client route
 Route::resource('client',ClientController::class)->middleware(['auth']);
+Route::resource('company',CompanyController::class)->middleware(['auth']);
 
 // contact
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');

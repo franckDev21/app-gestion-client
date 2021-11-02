@@ -14,7 +14,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $company = \App\Models\Company::with('clients')->orderByDesc('id')->paginate(6);
+        return view('company.index',compact('company'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name'      => 'unique:companies|max:255|required|min:2',
+            'email'     => 'unique:companies|max:255|required|email',
+            'description'     => 'sometimes|max:255',
+            'status' => 'required|boolean'
+        ]);
+
+        Company::create($data);
+
+        return redirect('/company')->with('success','Entreprise créé avec succès ! ');
     }
 
     /**
@@ -46,7 +56,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('company.show',compact('company'));
     }
 
     /**
@@ -57,7 +67,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('company.edit',compact('company'));
     }
 
     /**

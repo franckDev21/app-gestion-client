@@ -4114,7 +4114,7 @@ if (modal && close && croix && tab && token && ok) {
     modal.classList.remove('opacity-1');
   });
   ok.addEventListener('click', function (e) {
-    fetch("client/".concat(id), {
+    fetch("/client/".concat(id), {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-TOKEN': token

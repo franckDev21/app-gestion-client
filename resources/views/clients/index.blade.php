@@ -34,7 +34,7 @@
   
   <div class="mt-6">
     <div class="max-w-7xl mx-auto flex items-center justify-center ">
-      <input class="mt-1 rounded-md block w-3/5 border-none bg-white h-11 focus:ring-0" type="text" placeholder="Rechercher un nouveau client ..." />
+      <input class="mt-1 rounded-md block w-3/5 border-none bg-white h-11 focus:ring-0" type="text" placeholder="Rechercher ..." />
       <i class="fas text-xl fa-search text-gray-400 ml-2 "></i>
     </div>
   </div>
@@ -93,14 +93,14 @@
                         <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-green-100"> Inactif </span>
                       @endif
                     </td>
-                    <td class="px-4 py-3 text-sm">
-                      <a href="{{ route('client.show',$client->id) }}" title="Voir le client" class="p-2 bg-gray-100 hover:bg-gray-600 rounded-md text-indigo-500 hover:text-white "><i class="fas fa-eye text-current  "></i></a>
-                      <a href="{{ route('client.edit',$client->id) }}" title="Editer le client" class="p-2 bg-gray-100 hover:bg-gray-600 rounded-md  text-green-500 hover:text-white"><i class="fas fa-edit text-current"></i></a>
+                    <td class="px-4 flex py-3 text-sm">
+                      <a href="{{ route('client.show',$client->id) }}" title="Voir le client" class=" mr-2 p-1 sm:p-2  flex-none inline-block bg-gray-100 hover:bg-gray-600 rounded-md text-indigo-500 hover:text-white "><i class="fas fa-eye text-current  "></i></a>
+                      <a href="{{ route('client.edit',$client->id) }}" title="Editer le client" class="mr-2 p-1 sm:p-2  flex-none inline-block bg-gray-100 hover:bg-gray-600 rounded-md  text-green-500 hover:text-white"><i class="fas fa-edit text-current"></i></a>
                       <form action="#" class="inline">
                         @if ($client->status === 1)
-                          <button data-id="{{$client->id}}" type="submit" title="Supprimer le client"  class="delete switch__btn p-2 hover:bg-gray-600 bg-gray-100 rounded-md text-red-500 hover:text-white "><i class="fas fa-trash-alt fa-edit text-current pointer-events-none"></i></button>
+                          <button data-id="{{$client->id}}" type="submit" title="Supprimer le client"  class=" mr-2 p-1 sm:p-2  flex-none inline-block delete switch__btn hover:bg-gray-600 bg-gray-100 rounded-md text-red-500 hover:text-white "><i class="fas fa-trash-alt fa-edit text-current pointer-events-none"></i></button>
                         @else
-                          <button data-id="{{$client->id}}" type="submit" title="Activer le client"  class="activate switch__btn p-2 hover:bg-gray-600 bg-gray-100 rounded-md text-green-500 hover:text-white "><i class="fas fa-check pointer-events-none"></i></button>
+                          <button data-id="{{$client->id}}" type="submit" title="Activer le client"  class=" mr-2 p-1 sm:p-2  flex-none inline-block activate switch__btn hover:bg-gray-600 bg-gray-100 rounded-md text-green-500 hover:text-white "><i class="fas fa-check pointer-events-none"></i></button>
                         @endif
                       </form>
                     </td>
@@ -113,7 +113,7 @@
       </div>
       <!-- ./Client Table -->
       @if ($clients->count())
-        <div class=" p-4 my-4 bg-white rounded-lg mx-auto shadow-md w-5/12">
+        <div class=" p-1 my-4 bg-white rounded-lg mx-auto shadow-md w-8/12 sm:w-5/12">
             {{ $clients->links() }}
         </div>
     @endif

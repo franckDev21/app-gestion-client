@@ -57,7 +57,7 @@ if(modal && close && croix && tab && token && ok){
   })
 
   ok.addEventListener('click',e=>{
-    fetch(`client/${id}`,{
+    fetch(`/client/${id}`,{
       headers : {
         'Content-Type' : 'application/json',
         'X-CSRF-TOKEN' : token
