@@ -17,7 +17,7 @@ class ClientController extends Controller
     public function index()
     {
         // $clients = \App\Models\Client::status();
-        $clients = \App\Models\Client::orderByDesc('id')->paginate(6);
+        $clients = \App\Models\Client::with('company')->orderByDesc('id')->paginate(6);
         return view('clients.index',compact('clients'));
     }
 

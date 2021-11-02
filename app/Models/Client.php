@@ -12,7 +12,7 @@ class Client extends Model
     protected $fillable = ['name','email','company_id','status','poste','tel','photo'];
     
     public function scopeStatus($query){
-        return $query->orderByDesc('id')->where('status',1)->paginate(6);
+        return $query->with('company')->orderByDesc('id')->where('status',1)->paginate(6);
     }
 
     public function company(){
