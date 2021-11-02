@@ -74,7 +74,7 @@
                         </div>
                         <div>
                           <p class="font-semibold">{{ $client->name }}</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">10x Developer</p>
+                          <p class="text-xs text-gray-600 dark:text-gray-400">{{$client->poste}}</p>
                         </div>
                       </div>
                     </td>
