@@ -52,7 +52,7 @@
                   <span class="text-red-400 opacity-0 text-sm">message fake</span>
                 @enderror
               </div>
-            </div>
+            </div>  
             <div class="py-2 sm:flex items-center justify-between">
               <div class="flex flex-col mb-2 sm:mb-0 items-start justify-start w-full sm:mr-2">
                 <label for="description" class="pb-1 text-lg text-gray-500">Description de l'entreprise </label>
